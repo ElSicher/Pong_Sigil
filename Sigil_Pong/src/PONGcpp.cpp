@@ -63,7 +63,7 @@ void main()
 		slCircleFill(ball.x, ball.y, ball.radius, ball.vert);
 
 		ball.x += ball.ballSpeedX;
-		if ((ball.x + ball.radius) >= ((player2.x - player2.width /2)))
+		if ((ball.x + ball.radius) >= ((player2.x - player2.width /2)) && (ball.y + ball.radius)>=(player2.y - player2.height/2))
 		{
 			ball.ballSpeedX *= -1.0f; 
 		}

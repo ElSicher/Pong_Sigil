@@ -1,4 +1,0 @@
-﻿  PONGcpp.cpp
-c:\users\administrador\desktop\pong_sigil\sigil_pong\src\pongcpp.cpp(32): warning C4326: el tipo de valor devuelto de 'main' debe ser 'int' en lugar de 'void'
-c:\users\administrador\desktop\pong_sigil\sigil_pong\src\pongcpp.cpp(65): warning C4244: '+=': conversión de 'float' a 'int'; posible pérdida de datos
-  Pong.vcxproj -> C:\Users\Administrador\Desktop\Pong_Sigil\Sigil_Pong\bin\Debug\Pong.exe
