@@ -14,6 +14,9 @@ struct Players {
 	int height;
 	int x;
 	int y;
+	int green;
+	int red;
+	int blue;
 };
 struct Ball {
 	float ballSpeedX = 7.0f;
@@ -34,24 +37,33 @@ bool start = false;
 bool initStart = true;
 bool winnerP1 = false;
 bool winnerP2 = false;
+bool colorP1 = false;
+bool colorP2 = false;
 
 int scoreP1 = 0;
 int scoreP2 = 0;
+
 void main()
 {
-	
-
 		state = menu;
+
 		//players
 		player1.x = 100;
 		player1.y = 360;
 		player1.height = 150;
 		player1.width = 20;
+		player1.red = 255;
+		player1.blue = 0;
+		player1.green = 0;
 
 		player2.x = 1180;
 		player2.y = 360;
 		player2.height = 150;
 		player2.width = 20;
+		player2.red = 0;
+		player2.blue = 255;
+		player2.green = 0;
+
 
 		//ball
 		ball.x = 640;
@@ -108,12 +120,16 @@ void main()
 					ball.ballSpeedX *= -1.0f;
 					p2ColWithBall = false;
 					p1ColWithBall = true;
+					colorP2 = true;
+					colorP1 = false;
 				}
 				if (p1ColWithBall && (ball.x - ball.radius) <= (player1.x + player1.width / 2) && (ball.x + ball.radius) >= (player1.x - player1.width / 2) && (ball.y >= (player1.y - player1.height / 2)) && (ball.y <= (player1.y + player1.height / 2)))
 				{
 					ball.ballSpeedX *= -1.0f;
 					p1ColWithBall = false;
 					p2ColWithBall = true;
+					colorP1 = true;
+					colorP2 = false;
 				}
 				if (player1.y - player1.height / 2 <= 0)
 				{
@@ -186,10 +202,30 @@ void main()
 				slText(100, 690, score1.c_str());
 				slText(1180, 690, score2.c_str());
 
+				
+				if (colorP2 == true)
+				{
+					slSetForeColor(player2.red, player2.green, player2.blue, 1);
+					slCircleFill(ball.x, ball.y, ball.radius, ball.vert); 
+					slSetForeColor(255, 255, 255, 1);
+				}
+				if (colorP1 == true)
+				{
+					slSetForeColor(player1.red, player1.green, player1.blue, 1);
+					slCircleFill(ball.x, ball.y, ball.radius, ball.vert);
+					slSetForeColor(255, 255, 255, 1);
+				}
 
-				slRectangleFill(player1.x, player1.y, player1.width, player1.height);
-				slRectangleFill(player2.x, player2.y, player2.width, player2.height);
 				slCircleFill(ball.x, ball.y, ball.radius, ball.vert);
+
+
+				slSetForeColor(player1.red, player1.green, player1.blue, 1);
+				slRectangleFill(player1.x, player1.y, player1.width, player1.height);
+				slSetForeColor(255, 255, 255, 1);
+
+				slSetForeColor(player2.red, player2.green, player2.blue, 1);
+				slRectangleFill(player2.x, player2.y, player2.width, player2.height);
+				slSetForeColor(255, 255, 255, 1);
 			}
 
 			if (state == gameOver && winnerP1 == true)
