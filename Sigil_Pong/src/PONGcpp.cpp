@@ -1,14 +1,10 @@
-﻿#include "sl.h"
-#include <string>
+﻿
+#include "GAMESTATE.h"
 using namespace std;
 #define screenHeight 720
 #define screenWidth 1280
-enum GAMESTATE {
-	menu,
-	game,
-	gameAI,
-	gameOver
-}state;
+
+GAMESTATE state;
 
 struct Players {
 	int width;
