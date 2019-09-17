@@ -1,28 +1,11 @@
-﻿
-#include "GAMESTATE.h"
+﻿#include "GAMESTATE.h"
+#include "Paletas.h";
+#include "Pelotas.h"
 using namespace std;
 #define screenHeight 720
 #define screenWidth 1280
 
 GAMESTATE state;
-
-struct Players {
-	int width;
-	int height;
-	int x;
-	int y;
-	int green;
-	int red;
-	int blue;
-};
-struct Ball {
-	float ballSpeedX = 9.0f;
-	float ballSpeedY = 8.0f;
-	int x;
-	int y;
-	int radius = 15;
-	int vert = 40;
-};
 
 Players player1;
 Players player2;
