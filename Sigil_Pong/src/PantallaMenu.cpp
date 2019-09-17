@@ -10,7 +10,5 @@ void mainMenu(GAMESTATE &state, int screenWidth, int screenHeight)
 		slText(screenWidth / 2, 420, "Press ENTER to PLAY");
 		slText(screenWidth / 2, screenHeight / 2, "Press SPACE to Play against AI");
 		slText(screenWidth / 2, 300, "Press SCAPE to EXIT");
-
-
 	}
 }

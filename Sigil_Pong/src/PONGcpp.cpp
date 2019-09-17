@@ -1,6 +1,7 @@
 ﻿#include "GAMESTATE.h"
 #include "Paletas.h";
 #include "Pelotas.h"
+#include "Gameplay.h"
 using namespace std;
 #define screenHeight 720
 #define screenWidth 1280
@@ -70,12 +71,11 @@ void main()
 				}
 				//input
 
-				if (slGetKey('W')) player1.y += 8;
-				if (slGetKey('S')) player1.y -= 8;
-				if (slGetKey(SL_KEY_UP)) player2.y += 8;
-				if (slGetKey(SL_KEY_DOWN)) player2.y -= 8;
+				//update
+				
+				input();
 
-				if (slGetKey(32)) start = true;		//space = 32 in ASCII
+				if (slGetKey('space')) start = true;		//space = 32 in ASCII
 
 				if (start == true)
 				{
@@ -84,89 +84,9 @@ void main()
 
 				}
 
+				collisions(screenHeight, screenWidth, p2ColWithBall, p1ColWithBall, colorP1, colorP2);
 
-				//update
-
-				//collisions
-				if (p2ColWithBall && (ball.x + ball.radius) >= (player2.x - player2.width / 2) && (ball.x + ball.radius) <= (player2.x + player2.width / 2) && (ball.y >= (player2.y - player2.height / 2)) && (ball.y <= (player2.y + player2.height / 2)))
-				{
-					ball.ballSpeedX *= -1.0f;
-					p2ColWithBall = false;
-					p1ColWithBall = true;
-					colorP2 = true;
-					colorP1 = false;
-				}
-				if (p1ColWithBall && (ball.x - ball.radius) <= (player1.x + player1.width / 2) && (ball.x + ball.radius) >= (player1.x - player1.width / 2) && (ball.y >= (player1.y - player1.height / 2)) && (ball.y <= (player1.y + player1.height / 2)))
-				{
-					ball.ballSpeedX *= -1.0f;
-					p1ColWithBall = false;
-					p2ColWithBall = true;
-					colorP1 = true;
-					colorP2 = false;
-				}
-				if (player1.y - player1.height / 2 <= 0)
-				{
-					player1.y = player1.height / 2;
-				}
-				else if (player1.y + player1.height / 2 >= screenHeight)
-				{
-					player1.y = 720 - player1.height / 2;
-				}
-				if (player2.y - player2.height / 2 <= 0)
-				{
-					player2.y = player2.height / 2;
-				}
-				else if (player2.y + player2.height / 2 >= screenHeight)
-				{
-					player2.y = 720 - player2.height / 2;
-				}
-				if (ball.y + ball.radius >= screenHeight)
-				{
-					ball.ballSpeedY *= -1.0f;
-				}
-				if (ball.y - ball.radius <= 0)
-				{
-					ball.ballSpeedY *= -1.0f;
-				}
-
-				//rules
-				if (ball.x + ball.radius >= screenWidth)
-				{
-					ball.x = screenWidth / 2;
-					ball.y = screenHeight / 2;
-					start = false;
-					p1ColWithBall = true;
-					p2ColWithBall = true;
-					initStart = true;
-					scoreP1++;
-				}
-				if (ball.x - ball.radius <= 0)
-				{
-					ball.x = screenWidth / 2;
-					ball.y = screenHeight / 2;
-					start = false;
-					p1ColWithBall = true;
-					p2ColWithBall = true;
-					initStart = true;
-					scoreP2++;
-				}
-				if (scoreP1 == 3)
-				{
-					winnerP1 = true;
-					state = gameOver;
-					scoreP1 = 0;
-					scoreP2 = 0;
-					initStart = false;
-				}
-				if (scoreP2 == 3)
-				{
-					winnerP2 = true;
-					state = gameOver;
-					scoreP1 = 0;
-					scoreP2 = 0;
-					initStart = false;
-				}
-
+				rules(screenHeight, screenWidth, p2ColWithBall, p1ColWithBall, scoreP1, scoreP2, start, initStart, winnerP1, winnerP2);
 				//draw
 
 				slSetFontSize(24);
@@ -212,11 +132,8 @@ void main()
 				}
 				//input
 
-				if (slGetKey('W')) player1.y += 8;
-				if (slGetKey('S')) player1.y -= 8;
-					
-				player2.y = ball.y;
-
+				inputAI();
+				
 				if (slGetKey(32)) start = true;		//space = 32 in ASCII
 
 				if (start == true)
