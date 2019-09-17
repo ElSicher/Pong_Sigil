@@ -1,7 +1,8 @@
 ﻿#include "GAMESTATE.h"
 #include "Paletas.h";
 #include "Pelotas.h"
-#include "Gameplay.h"
+#include "PantallaGameplay.h"
+#include "PantallaGameOver.h"
 using namespace std;
 #define screenHeight 720
 #define screenWidth 1280
@@ -32,7 +33,6 @@ void main()
 		//players
 		initPaleta();
 
-		//ball
 		initPelota();
 
 		//game
@@ -45,7 +45,6 @@ void main()
 
 			if (state == game)
 			{
-				//init
 				initMatch(initStart, p1ColWithBall, p2ColWithBall);
 
 				//update
@@ -56,52 +55,31 @@ void main()
 				collisions(screenHeight, screenWidth, p2ColWithBall, p1ColWithBall, colorP1, colorP2);
 
 				rules(screenHeight, screenWidth, p2ColWithBall, p1ColWithBall, scoreP1, scoreP2, start, initStart, winnerP1, winnerP2);
-				
-				//draw
+
 				drawGame(colorP1, colorP2, scoreP1, scoreP2);
-				
 			}
 
 			if (state == gameAI)
 			{
-				//init
 				initMatch(initStart, p1ColWithBall, p2ColWithBall);
-				//input
-
+			
+				//update
 				inputAI();
 				
 				startGame(start);
-				
 
-				//update
-
-				//collisions
 				collisions(screenHeight, screenWidth, p2ColWithBall, p1ColWithBall, colorP1, colorP2);
 			
-				//rules
 				rulesAI(screenHeight, screenWidth, p2ColWithBall, p1ColWithBall, scoreP1, scoreAI, start, initStart, winnerP1, winnerAI);
 
-				//draw
 				drawGameAI(colorP1, colorP2, scoreP1, scoreAI);
 			}
 
 			if (state == gameOver && winnerP1 == true)
 			{
-				if (slGetKey(SL_KEY_ENTER))
-				{
-					state = game;
-					winnerP1 = false;
-				}
-				if (slGetKey(32))
-				{
-					state = menu;
-					winnerP1 = false;
-				}
-
-				slText(screenWidth / 2, 500, "PLAYER 1 WINS!");
-				slText(screenWidth / 2, screenHeight / 2, "Press ENTER to PLAY Again");
-				slText(screenWidth / 2, 310, "Press SPACE to get back to the MENU");
-				slText(screenWidth / 2, 250, "Press SCAPE to EXIT");
+				p1Winner(state, winnerP1);
+				drawWinner1(screenWidth, screenHeight);
+				
 			}
 
 			if (state == gameOver && winnerP2 == true)

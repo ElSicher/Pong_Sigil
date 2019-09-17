@@ -21,27 +21,33 @@
     <ClCompile Include="..\src\PantallaMenu.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
-    <ClCompile Include="..\src\Gameplay.cpp">
-      <Filter>Archivos de origen</Filter>
-    </ClCompile>
     <ClCompile Include="..\src\Paletas.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
     <ClCompile Include="..\src\pelotas.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
+    <ClCompile Include="..\src\PantallaGameplay.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\PantallaGameOver.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\lib\sigil-vc2015\include\GAMESTATE.h">
+    <ClInclude Include="..\src\GAMESTATE.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
-    <ClInclude Include="..\lib\sigil-vc2015\include\Paletas.h">
+    <ClInclude Include="..\src\Paletas.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
-    <ClInclude Include="..\lib\sigil-vc2015\include\Pelotas.h">
+    <ClInclude Include="..\src\PantallaGameOver.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
-    <ClInclude Include="..\lib\sigil-vc2015\include\Gameplay.h">
+    <ClInclude Include="..\src\PantallaGameplay.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Pelotas.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
   </ItemGroup>
