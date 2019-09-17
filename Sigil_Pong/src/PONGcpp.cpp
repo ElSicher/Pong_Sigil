@@ -28,29 +28,12 @@ int scoreAI = 0;
 
 void main()
 {
-		state = menu;
-
+		
 		//players
-		player1.x = 100;
-		player1.y = 360;
-		player1.height = 150;
-		player1.width = 20;
-		player1.red = 255;
-		player1.blue = 0;
-		player1.green = 0;
-
-		player2.x = 1180;
-		player2.y = 360;
-		player2.height = 150;
-		player2.width = 20;
-		player2.red = 0;
-		player2.blue = 255;
-		player2.green = 0;
-
+		initPaleta();
 
 		//ball
-		ball.x = 640;
-		ball.y = 360;
+		initPelota();
 
 		//game
 		slWindow(screenWidth, screenHeight, "PONG v1.0", false);
@@ -63,208 +46,43 @@ void main()
 			if (state == game)
 			{
 				//init
-				if (initStart == true)
-				{
-					p1ColWithBall = true;
-					p2ColWithBall = true;
-					initStart = false;
-				}
-				//input
+				initMatch(initStart, p1ColWithBall, p2ColWithBall);
 
 				//update
+				startGame(start);
 				
 				input();
-
-				if (slGetKey('space')) start = true;		//space = 32 in ASCII
-
-				if (start == true)
-				{
-					ball.x += ball.ballSpeedX;
-					ball.y += ball.ballSpeedY;
-
-				}
 
 				collisions(screenHeight, screenWidth, p2ColWithBall, p1ColWithBall, colorP1, colorP2);
 
 				rules(screenHeight, screenWidth, p2ColWithBall, p1ColWithBall, scoreP1, scoreP2, start, initStart, winnerP1, winnerP2);
+				
 				//draw
-
-				slSetFontSize(24);
-				string score1 = "Player 1: " + to_string(scoreP1);
-				string score2 = "Player 2: " + to_string(scoreP2);
-				slText(100, 690, score1.c_str());
-				slText(1180, 690, score2.c_str());
-
-
-				if (colorP2 == true)
-				{
-					slSetForeColor(player2.red, player2.green, player2.blue, 1);
-					slCircleFill(ball.x, ball.y, ball.radius, ball.vert);
-					slSetForeColor(255, 255, 255, 1);
-				}
-				if (colorP1 == true)
-				{
-					slSetForeColor(player1.red, player1.green, player1.blue, 1);
-					slCircleFill(ball.x, ball.y, ball.radius, ball.vert);
-					slSetForeColor(255, 255, 255, 1);
-				}
-
-				slCircleFill(ball.x, ball.y, ball.radius, ball.vert);
-
-
-				slSetForeColor(player1.red, player1.green, player1.blue, 1);
-				slRectangleFill(player1.x, player1.y, player1.width, player1.height);
-				slSetForeColor(255, 255, 255, 1);
-
-				slSetForeColor(player2.red, player2.green, player2.blue, 1);
-				slRectangleFill(player2.x, player2.y, player2.width, player2.height);
-				slSetForeColor(255, 255, 255, 1);
+				drawGame(colorP1, colorP2, scoreP1, scoreP2);
+				
 			}
 
 			if (state == gameAI)
 			{
 				//init
-				if (initStart == true)
-				{
-					p1ColWithBall = true;
-					p2ColWithBall = true;
-					initStart = false;
-				}
+				initMatch(initStart, p1ColWithBall, p2ColWithBall);
 				//input
 
 				inputAI();
 				
-				if (slGetKey(32)) start = true;		//space = 32 in ASCII
-
-				if (start == true)
-				{
-					ball.x += ball.ballSpeedX;
-					ball.y += ball.ballSpeedY;
-
-				}
+				startGame(start);
+				
 
 				//update
 
 				//collisions
-				if (p2ColWithBall && (ball.x + ball.radius) >= (player2.x - player2.width / 2) && (ball.x + ball.radius) <= (player2.x + player2.width / 2) && (ball.y >= (player2.y - player2.height / 2)) && (ball.y <= (player2.y + player2.height / 2)))
-				{
-					ball.ballSpeedX *= -1.0f;
-					p2ColWithBall = false;
-					p1ColWithBall = true;
-					colorP2 = true;
-					colorP1 = false;
-				}
-				if (p1ColWithBall && (ball.x - ball.radius) <= (player1.x + player1.width / 2) && (ball.x + ball.radius) >= (player1.x - player1.width / 2) && (ball.y >= (player1.y - player1.height / 2)) && (ball.y <= (player1.y + player1.height / 2)))
-				{
-					ball.ballSpeedX *= -1.0f;
-					p1ColWithBall = false;
-					p2ColWithBall = true;
-					colorP1 = true;
-					colorP2 = false;
-				}
-				if (player1.y - player1.height / 2 <= 0)
-				{
-					player1.y = player1.height / 2;
-				}
-				else if (player1.y + player1.height / 2 >= screenHeight)
-				{
-					player1.y = 720 - player1.height / 2;
-				}
-				if (player2.y - player2.height / 2 <= 0)
-				{
-					player2.y = player2.height / 2;
-				}
-				else if (player2.y + player2.height / 2 >= screenHeight)
-				{
-					player2.y = 720 - player2.height / 2;
-				}
-				if (ball.y + ball.radius >= screenHeight)
-				{
-					ball.ballSpeedY *= -1.0f;
-				}
-				if (ball.y - ball.radius <= 0)
-				{
-					ball.ballSpeedY *= -1.0f;
-				}
-
+				collisions(screenHeight, screenWidth, p2ColWithBall, p1ColWithBall, colorP1, colorP2);
+			
 				//rules
-				if (ball.x + ball.radius >= screenWidth)
-				{
-					ball.x = screenWidth / 2;
-					ball.y = screenHeight / 2;
-					start = false;
-					p1ColWithBall = true;
-					p2ColWithBall = true;
-					initStart = true;
-					scoreP1++;
-				}
-				if (ball.x - ball.radius <= 0)
-				{
-					ball.x = screenWidth / 2;
-					ball.y = screenHeight / 2;
-					start = false;
-					p1ColWithBall = true;
-					p2ColWithBall = true;
-					initStart = true;
-					scoreAI++;
-				}
-				if (scoreP1 == 3)
-				{
-					winnerP1 = true;
-					state = gameOver;
-					scoreP1 = 0;
-					scoreP2 = 0;
-					initStart = false;
-				}
-				if (scoreP2 == 3)
-				{
-					winnerP2 = true;
-					state = gameOver;
-					scoreP1 = 0;
-					scoreP2 = 0;
-					initStart = false;
-				}
-				if (scoreAI == 3)
-				{
-					winnerAI = true;
-					state = gameOver;
-					scoreAI = 0;
-					scoreP1 = 0;
-					initStart = false;
-				}
+				rulesAI(screenHeight, screenWidth, p2ColWithBall, p1ColWithBall, scoreP1, scoreAI, start, initStart, winnerP1, winnerAI);
 
 				//draw
-
-				slSetFontSize(24);
-				string score1 = "Player 1: " + to_string(scoreP1);
-				string score2 = "AI: " + to_string(scoreAI);
-				slText(100, 690, score1.c_str());
-				slText(1180, 690, score2.c_str());
-
-
-				if (colorP2 == true)
-				{
-					slSetForeColor(player2.red, player2.green, player2.blue, 1);
-					slCircleFill(ball.x, ball.y, ball.radius, ball.vert);
-					slSetForeColor(255, 255, 255, 1);
-				}
-				if (colorP1 == true)
-				{
-					slSetForeColor(player1.red, player1.green, player1.blue, 1);
-					slCircleFill(ball.x, ball.y, ball.radius, ball.vert);
-					slSetForeColor(255, 255, 255, 1);
-				}
-
-				slCircleFill(ball.x, ball.y, ball.radius, ball.vert);
-
-
-				slSetForeColor(player1.red, player1.green, player1.blue, 1);
-				slRectangleFill(player1.x, player1.y, player1.width, player1.height);
-				slSetForeColor(255, 255, 255, 1);
-
-				slSetForeColor(player2.red, player2.green, player2.blue, 1);
-				slRectangleFill(player2.x, player2.y, player2.width, player2.height);
-				slSetForeColor(255, 255, 255, 1);
+				drawGameAI(colorP1, colorP2, scoreP1, scoreAI);
 			}
 
 			if (state == gameOver && winnerP1 == true)

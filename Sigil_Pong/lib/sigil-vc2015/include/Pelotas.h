@@ -8,3 +8,5 @@ struct Ball {
 	int vert = 40;
 };
 extern Ball ball;
+
+void initPelota();

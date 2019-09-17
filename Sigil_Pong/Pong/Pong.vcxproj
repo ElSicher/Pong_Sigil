@@ -131,7 +131,9 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\src\Paletas.cpp" />
     <ClCompile Include="..\src\PantallaMenu.cpp" />
+    <ClCompile Include="..\src\pelotas.cpp" />
     <ClCompile Include="..\src\PONGcpp.cpp" />
     <ClCompile Include="..\src\Gameplay.cpp" />
   </ItemGroup>

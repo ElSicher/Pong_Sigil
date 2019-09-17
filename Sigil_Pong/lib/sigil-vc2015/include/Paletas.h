@@ -11,3 +11,5 @@ struct Players {
  
 extern Players player1;
 extern Players player2;
+
+void initPaleta();
