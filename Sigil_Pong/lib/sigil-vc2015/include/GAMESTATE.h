@@ -9,3 +9,5 @@ enum GAMESTATE {
 	gameOver
 };
 extern GAMESTATE state;
+
+void mainMenu(GAMESTATE &state, int screenWidth, int screenHeight);

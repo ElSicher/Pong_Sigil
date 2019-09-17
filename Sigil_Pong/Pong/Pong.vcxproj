@@ -131,7 +131,13 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\src\PantallaMenu.cpp" />
     <ClCompile Include="..\src\PONGcpp.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\lib\sigil-vc2015\include\GAMESTATE.h" />
+    <ClInclude Include="..\lib\sigil-vc2015\include\Paletas.h" />
+    <ClInclude Include="..\lib\sigil-vc2015\include\Pelotas.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
