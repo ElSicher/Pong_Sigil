@@ -75,49 +75,8 @@ void main()
 				drawGameAI(colorP1, colorP2, scoreP1, scoreAI);
 			}
 
-			if (state == gameOver && winnerP1 == true)
-			{
-				p1Winner(state, winnerP1);
-				drawWinner1(screenWidth, screenHeight);
-				
-			}
-
-			if (state == gameOver && winnerP2 == true)
-			{
-				if (slGetKey(SL_KEY_ENTER))
-				{
-					state = game;
-					winnerP2 = false;
-				}
-				if (slGetKey(32))
-				{
-					state = menu;
-					winnerP2 = false;
-				}
-				slText(screenWidth / 2, 500, "PLAYER 2 WINS!");
-				slText(screenWidth / 2, screenHeight / 2, "Press ENTER to PLAY Again");
-				slText(screenWidth / 2, 310, "Press SPACE to get back to the MENU");
-				slText(screenWidth / 2, 250, "Press SCAPE to EXIT");
-			}
-
-			if(state == gameOver && winnerAI == true)
-			{
-				if (slGetKey(SL_KEY_ENTER))
-				{
-					state = gameAI;
-					winnerAI = false;
-				}
-				if (slGetKey(32))
-				{
-					state = menu;
-					winnerAI = false;
-				}
-				slText(screenWidth / 2, 500, "The AI WINS!");
-				slText(screenWidth / 2, screenHeight / 2, "Press ENTER to PLAY Again");
-				slText(screenWidth / 2, 310, "Press SPACE to get back to the MENU");
-				slText(screenWidth / 2, 250, "Press SCAPE to EXIT");
-			}
-
+			gameOverScreen(state, winnerP1, winnerP2, winnerAI, screenWidth, screenHeight);
+			
 			slRender();
 		}
 	slClose();

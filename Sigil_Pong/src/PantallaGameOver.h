@@ -1,4 +1,4 @@
 #pragma once
 #include "GAMESTATE.h"
-void p1Winner(GAMESTATE &state, bool &winnerP1);
-void drawWinner1(int screenWidth, int screenHeight);
+void gameOverScreen(GAMESTATE &state, bool &winnerP1, bool &winnerP2, bool &winnerAI, int screenWidth, int screenHeight);
+
