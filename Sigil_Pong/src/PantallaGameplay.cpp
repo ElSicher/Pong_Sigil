@@ -226,3 +226,37 @@ void drawGameAI(bool &colorP1, bool &colorP2, int scoreP1, int scoreAI)
 	slRectangleFill(player2.x, player2.y, player2.width, player2.height);
 	slSetForeColor(255, 255, 255, 1);
 }
+void gameLoop(GAMESTATE &state, bool &initStart, bool &start, bool &p1ColWithBall, bool &p2ColWithBall, bool &colorP1, bool &colorP2, int &scoreP1, int &scoreP2, int &scoreAI, bool &winnerP1, bool &winnerAI, bool &winnerP2, int screenWidth, int screenHeight)
+{
+	if (state == game)
+	{
+		initMatch(initStart, p1ColWithBall, p2ColWithBall);
+
+		//update
+		startGame(start);
+
+		input();
+
+		collisions(screenHeight, screenWidth, p2ColWithBall, p1ColWithBall, colorP1, colorP2);
+
+		rules(screenHeight, screenWidth, p2ColWithBall, p1ColWithBall, scoreP1, scoreP2, start, initStart, winnerP1, winnerP2);
+
+		drawGame(colorP1, colorP2, scoreP1, scoreP2);
+	}
+
+	if (state == gameAI)
+	{
+		initMatch(initStart, p1ColWithBall, p2ColWithBall);
+
+		//update
+		inputAI();
+
+		startGame(start);
+
+		collisions(screenHeight, screenWidth, p2ColWithBall, p1ColWithBall, colorP1, colorP2);
+
+		rulesAI(screenHeight, screenWidth, p2ColWithBall, p1ColWithBall, scoreP1, scoreAI, start, initStart, winnerP1, winnerAI);
+
+		drawGameAI(colorP1, colorP2, scoreP1, scoreAI);
+	}
+}

@@ -131,14 +131,16 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\src\Game.cpp" />
     <ClCompile Include="..\src\Paletas.cpp" />
     <ClCompile Include="..\src\PantallaGameOver.cpp" />
     <ClCompile Include="..\src\PantallaMenu.cpp" />
     <ClCompile Include="..\src\pelotas.cpp" />
-    <ClCompile Include="..\src\PONGcpp.cpp" />
+    <ClCompile Include="..\src\main.cpp" />
     <ClCompile Include="..\src\PantallaGameplay.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\src\Game.h" />
     <ClInclude Include="..\src\GAMESTATE.h" />
     <ClInclude Include="..\src\Paletas.h" />
     <ClInclude Include="..\src\PantallaGameOver.h" />
