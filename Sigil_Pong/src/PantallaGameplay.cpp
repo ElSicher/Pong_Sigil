@@ -167,7 +167,7 @@ void drawGame(bool &colorP1, bool &colorP2, int scoreP1, int scoreP2)
 	slText(100, 690, score1.c_str());
 	slText(1180, 690, score2.c_str());
 
-
+	slCircleFill(ball.x, ball.y, ball.radius, ball.vert);
 	if (colorP2 == true)
 	{
 		slSetForeColor(player2.red, player2.green, player2.blue, 1);
@@ -180,8 +180,6 @@ void drawGame(bool &colorP1, bool &colorP2, int scoreP1, int scoreP2)
 		slCircleFill(ball.x, ball.y, ball.radius, ball.vert);
 		slSetForeColor(255, 255, 255, 1);
 	}
-
-	slCircleFill(ball.x, ball.y, ball.radius, ball.vert);
 
 
 	slSetForeColor(player1.red, player1.green, player1.blue, 1);

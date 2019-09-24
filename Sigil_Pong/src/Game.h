@@ -1,7 +1,12 @@
 #pragma once
 #include "GAMESTATE.h"
+#include "PantallaGameplay.h"
+#include "PantallaGameOver.h"
 #include "Pelotas.h"
 #include "Paletas.h"
+#define screenHeight 720
+#define screenWidth 1280
+using namespace std;
 
 extern bool p1ColWithBall;
 extern bool p2ColWithBall;
@@ -16,3 +21,8 @@ extern bool colorP2;
 extern int scoreP1;
 extern int scoreP2;
 extern int scoreAI;
+
+void init();
+void update();
+void draw();
+void executeGame();
