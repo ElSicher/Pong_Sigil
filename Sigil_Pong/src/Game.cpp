@@ -1,4 +1,7 @@
 #include "Game.h"
+#include "sl.h"
+#include <string>
+using namespace std;
 GAMESTATE state;
 
 Players player1;

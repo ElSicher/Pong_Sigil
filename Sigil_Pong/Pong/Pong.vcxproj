@@ -134,20 +134,21 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="..\src\Game.cpp" />
-    <ClCompile Include="..\src\Paletas.cpp" />
-    <ClCompile Include="..\src\PantallaGameOver.cpp" />
-    <ClCompile Include="..\src\PantallaMenu.cpp" />
-    <ClCompile Include="..\src\pelotas.cpp" />
+    <ClCompile Include="..\src\Paddle.cpp" />
+    <ClCompile Include="..\src\gameOverScreen.cpp" />
+    <ClCompile Include="..\src\menuScreen.cpp" />
+    <ClCompile Include="..\src\ball.cpp" />
     <ClCompile Include="..\src\main.cpp" />
-    <ClCompile Include="..\src\PantallaGameplay.cpp" />
+    <ClCompile Include="..\src\GameplayScreen.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\src\Game.h" />
     <ClInclude Include="..\src\GAMESTATE.h" />
-    <ClInclude Include="..\src\Paletas.h" />
-    <ClInclude Include="..\src\PantallaGameOver.h" />
-    <ClInclude Include="..\src\PantallaGameplay.h" />
-    <ClInclude Include="..\src\Pelotas.h" />
+    <ClInclude Include="..\src\menuScreen.h" />
+    <ClInclude Include="..\src\Paddle.h" />
+    <ClInclude Include="..\src\gameOverScreen.h" />
+    <ClInclude Include="..\src\gameplayScreen.h" />
+    <ClInclude Include="..\src\ball.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

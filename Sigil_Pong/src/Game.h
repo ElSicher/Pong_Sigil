@@ -1,9 +1,9 @@
 #pragma once
-#include "GAMESTATE.h"
-#include "PantallaGameplay.h"
-#include "PantallaGameOver.h"
-#include "Pelotas.h"
-#include "Paletas.h"
+#include "gameplayScreen.h"
+#include "gameOverScreen.h"
+#include "ball.h"
+#include "Paddle.h"
+#include "menuScreen.h"
 #define screenHeight 720
 #define screenWidth 1280
 using namespace std;
